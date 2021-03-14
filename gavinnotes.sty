@@ -1,0 +1,24 @@
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{xifthen}% provides \isempty test
+\usepackage[colorinlistoftodos]{todonotes}
+
+% Notes we will be using
+\newcommand{\gavin}[1]{\todo[color=Aquamarine]{\small GC\@: #1}}
+\newcommand{\gcin}[2][]{%
+  \ifthenelse{\isempty{#1}}%
+	{\todo[inline,color=Aquamarine]{GC\@: #2}}%If caption is empty
+	{\todo[caption={GC\@: #1},inline,color=Aquamarine]{GC\@: #2}}%If caption is not empty
+}
+\newcommand{\guy}[1]{\todo{\small GH\@: #1}}
+\newcommand{\ghin}[2][]{%
+  \ifthenelse{\isempty{#1}}%
+	{\todo[inline]{GH\@: #2}}%If caption is empty
+	{\todo[caption={GH\@: #1},inline]{GH\@: #2}}%If caption is not empty
+}
+\newcommand{\ami}[1]{\todo[color=Orchid]{\small AE\@: #1}}
+\newcommand{\amiin}[2][]{%
+  \ifthenelse{\isempty{#1}}%
+  {\todo[inline,color=Orchid]{AE\@: #2}}%If caption is empty
+  {\todo[caption={AE\@: #1},inline,color=Orchid]{AE\@: #2}}%If caption is not empty
+}
+\newcommand{\needcite}[1]{\textcolor{red}{cite}\todo[color=LimeGreen]{Citation Needed\@: #1}}
