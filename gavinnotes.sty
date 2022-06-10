@@ -1,24 +1,30 @@
-\RequirePackage[table,xcdraw,dvipsnames]{xcolor}
-\RequirePackage{xifthen}% provides \isempty test
+\RequirePackage[table,xcdraw,dvipsnames,cmyk]{xcolor}
 \RequirePackage[colorinlistoftodos]{todonotes}
+\RequirePackage{xstring}
 
 % Notes we will be using
-\newcommand{\gavin}[1]{\todo[color=Aquamarine]{\small GC\@: #1}}
-\newcommand{\gcin}[2][]{%
-  \ifthenelse{\isempty{#1}}%
-	{\todo[inline,color=Aquamarine]{GC\@: #2}}%If caption is empty
-	{\todo[caption={GC\@: #1},inline,color=Aquamarine]{GC\@: #2}}%If caption is not empty
-}
-\newcommand{\guy}[1]{\todo{\small GH\@: #1}}
-\newcommand{\ghin}[2][]{%
-  \ifthenelse{\isempty{#1}}%
-	{\todo[inline]{GH\@: #2}}%If caption is empty
-	{\todo[caption={GH\@: #1},inline]{GH\@: #2}}%If caption is not empty
-}
-\newcommand{\ami}[1]{\todo[color=Orchid]{\small AE\@: #1}}
-\newcommand{\amiin}[2][]{%
-  \ifthenelse{\isempty{#1}}%
-  {\todo[inline,color=Orchid]{AE\@: #2}}%If caption is empty
-  {\todo[caption={AE\@: #1},inline,color=Orchid]{AE\@: #2}}%If caption is not empty
-}
-\newcommand{\needcite}[1]{\textcolor{red}{cite}\todo[color=LimeGreen]{Citation Needed\@: #1}}
+\newcommand{\gavin}[1]{\todo[color=Aquamarine]{\footnotesize GC: #1}}
+\newcommand{\gcin}[1]{%
+	\noexpandarg
+	\StrLeft{#1}{40}[\leftOfText]%
+	\todo[inline, author=GC, caption=\leftOfText ,color=Aquamarine]{#1}%
+}%
+\makeatother
+
+\newcommand{\guy}[1]{\todo[color=Dandelion]{\footnotesize GH: #1}}
+\newcommand{\ghin}[1]{%
+	\noexpandarg
+	\StrLeft{#1}{40}[\leftOfText]%
+	\todo[inline, author=GH, caption=\leftOfText, color=Dandelion]{#1}%
+}%
+\makeatother
+
+\newcommand{\ami}[1]{\todo[color=Orchid]{\footnotesize AE: #1}}
+\newcommand{\amiin}[1]{%
+	\noexpandarg
+	\StrLeft{#1}{40}[\leftOfText]%
+	\todo[inline, author=AE, caption=\leftOfText ,color=Orchid]{#1}%
+}%
+\makeatother
+
+\newcommand{\needcite}[1]{\textcolor{red}{(B. Blah et. al, 1765)}\todo[color=LimeGreen]{\footnotesize Citation\@: #1}}
